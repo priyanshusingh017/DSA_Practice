@@ -2,31 +2,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// LeetCode 334: Increasing Triplet Subsequence
+// Idea (O(n) time, O(1) space):
+// Track the smallest value seen so far (first) and the smallest possible
+// second value that can come after it (second). If we find a number greater
+// than both, we have an increasing triplet (first < second < current).
 bool increasingTriplet(vector<int> &nums)
 {
-    int first = INT_MAX;
-    int second = INT_MAX;
+    int first = INT_MAX;   // smallest value seen so far
+    int second = INT_MAX;  // smallest value greater than 'first'
     for (int n : nums)
     {
         if (n <= first)
         {
-            first = n; // update the first element
+            first = n;          // new smallest value
         }
         else if (n <= second)
         {
-            second = n; // update the second element
+            second = n;         // best candidate for second
         }
         else
         {
-            return true; // means the third element is greater
+            return true;         // found n > second → triplet exists
         }
     }
-    return false; // no triplet found ;
+    return false; // no increasing triplet
 }
 
 int main()
 {
-    vector<int>nums = {2,1,5,0,4,6};
+    vector<int>nums = {2,1,5,0,4,6}; // expected: true (1 < 4 < 6)
 
     cout << (increasingTriplet(nums) ? "true" : "false");
     return 0;
