@@ -2,25 +2,35 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void saydigit(string *arr , int n){
-
-    // base case 
-    if(n==0) return;
-
-    int digit = n%10;  // return the remainder
-    n=n/10; // return the quotient 
-
-    if(n!=0) saydigit(arr , n);
-
-    cout<<arr[digit]<<" ";
+void saydigit(string arr[], int n) {
+    if(n == 0) {
+        cout << arr[0] << " ";
+        return;
+    }
+    
+    int digit = n % 10;
+    n = n / 10;
+    
+    if(n != 0) {  // Only recurse if more digits
+        saydigit(arr, n);
+    }
+    
+    cout << arr[digit] << " ";
 }
 
 int main() {
-    int n;
-    cout << "Enter the number: ";
-    cin >> n;
-    string arr[10] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-    saydigit(arr, n);
-    cout << endl;
+    string arr[10] = {"zero", "one", "two", "three", "four", 
+                      "five", "six", "seven", "eight", "nine"};
+    
+    cout << "Testing improved saydigit function:\n\n";
+    
+    int test_cases[] = {0, 5, 10, 25, 100, 432, 1000, 12345};
+    
+    for(int num : test_cases) {
+        cout << "saydigit(arr, " << num << ") = \"";
+        saydigit(arr, num);
+        cout << "\"" << endl;
+    }
+    
     return 0;
 }
