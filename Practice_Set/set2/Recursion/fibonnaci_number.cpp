@@ -26,7 +26,6 @@ int fibonnacinumber(int n){
 }
 
 
-
 int main(){
     int n;
     cout << "Enter the number of terms: ";
